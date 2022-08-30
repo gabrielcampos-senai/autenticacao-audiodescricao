@@ -10,7 +10,7 @@ sendpulse.init(API_USER_ID,API_SECRET,TOKEN_STORAGE,function() {
     sendpulse.listAddressBooks(console.log);
 });
  var answerGetter = function(data) {
-  console.log(data);
+
 }
 
 var email;

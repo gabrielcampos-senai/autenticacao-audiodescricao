@@ -29,8 +29,6 @@ var generateToken = async (request,response)=>{
  
   var token = gen(6);
 
-  console.log("novo token ",token)
-
   database.resetToken(token);
 
   db = await database.getEmails();
@@ -41,18 +39,9 @@ var generateToken = async (request,response)=>{
     }    
     });
 
-
-  // client.query('SELECT * FROM usuarios WHERE status = true', (error, results) => {
-  //   if (error) {
-  //     throw error
-  //   }
-  //   a = results.rows.forEach(x => {
-  //     sendEmail.sendElasticEmail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
-  //   });
-  //   response.status(200).json("xablau");
-  // })
-
-
+    console.log("cabou o envio")
+    
+    response.status(200).json;
 }
 
 

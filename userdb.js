@@ -6,8 +6,6 @@ baseItem = async function (){
     let narrador = db.collection('usuarios')
     let item = await narrador.get('usuario')
 
-    console.log('token antigo db: ',item.props.token)
-
     return item
 }
 
@@ -23,14 +21,18 @@ const resetToken = async function (newToken) {
     
     let narrador = db.collection('usuarios')
 
-    let newItem = await baseItem()
-
-    newItem.props.token = newToken
-
-    let usuario = await narrador.set('usuario', newItem.props) 
-
-    let item = await narrador.get('usuario')
+    await narrador.set('usuario',{token: newToken}) 
 }
 
 
-module.exports = { getEmails,resetToken,baseItem};
+const getToken = async function () {
+    
+    let narrador = db.collection('usuarios')
+
+    let item = await narrador.get('usuario')
+
+    return item.props.token
+}
+
+
+module.exports = { getEmails,resetToken,baseItem,getToken};
