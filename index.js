@@ -5,6 +5,7 @@ const express = require('express')
 
 const { gen }  = require('n-digit-token');
 
+const database = require('./userdb.js');
 
 var xablito = require('./testesendmail.js'); 
 
@@ -24,23 +25,34 @@ async function start(){
   await client.connect();
 }
 
-var generateToken = (request,response)=>{
+var generateToken = async (request,response)=>{
+ 
   var token = gen(6);
-  client.query(`UPDATE usuarios SET token = '${token}'`,(error,results) =>{
-    if (error) {
-      throw error
-    }
-  })
 
-  client.query('SELECT * FROM usuarios WHERE status = true', (error, results) => {
-    if (error) {
-      throw error
-    }
-    a = results.rows.forEach(x => {
-      sendEmail.sendElasticEmail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
+  console.log("novo token ",token)
+
+  database.resetToken(token);
+
+  db = await database.getEmails();
+
+  enviarEmails = db.forEach(x => {
+      if(x.status){
+      xablito.sendMail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
+    }    
     });
-    response.status(200).json("xablau");
-  })
+
+
+  // client.query('SELECT * FROM usuarios WHERE status = true', (error, results) => {
+  //   if (error) {
+  //     throw error
+  //   }
+  //   a = results.rows.forEach(x => {
+  //     sendEmail.sendElasticEmail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
+  //   });
+  //   response.status(200).json("xablau");
+  // })
+
+
 }
 
 
@@ -127,9 +139,9 @@ app.get('/admin/showemail', function(request, response){
 })
 
 
-// app.get('/xablau', function(request, response){
-//   xablito.teste();
-//   })
+app.get('/xablau', function(request, response){
+   response.status(200).json(database.run());
+  })
 
 
 
