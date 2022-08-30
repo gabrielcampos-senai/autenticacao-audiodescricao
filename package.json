@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "Error": "no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "Error": "no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "gabriel_campos@estudante.sc.senai.br",
   "license": "ISC",
@@ -31,8 +31,5 @@
   "engines": {
     "node": "16.x",
     "npm": "8.11.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.2"
   }
 }
