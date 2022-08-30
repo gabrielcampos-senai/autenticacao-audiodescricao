@@ -2,8 +2,7 @@ require("dotenv").config();
 
 
 const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+
 const { gen }  = require('n-digit-token');
 
 
@@ -44,10 +43,6 @@ var generateToken = (request,response)=>{
   })
 }
 
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
 
 start();
 
