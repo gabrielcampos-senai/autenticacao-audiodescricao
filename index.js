@@ -37,7 +37,7 @@ var generateToken = (request,response)=>{
       throw error
     }
     a = results.rows.forEach(x => {
-      xablito.sendMail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
+      sendEmail.sendElasticEmail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
     });
     response.status(200).json("xablau");
   })
