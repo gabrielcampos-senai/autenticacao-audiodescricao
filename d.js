@@ -1,5 +1,5 @@
-const CyclicDB = require('cyclic-dynamodb')
-const db = CyclicDB('autenticacao-audiodescricao') 
+const db = require('cyclic-dynamodb')
+
 
 baseItem = async function (){
     
