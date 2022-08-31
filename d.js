@@ -1,5 +1,5 @@
 const CyclicDB = require('cyclic-dynamodb')
-const db = CyclicDB() 
+const db = CyclicDB("dead-red-tortoise-hoseCyclicDB") 
 
 baseItem = async function (){
     
