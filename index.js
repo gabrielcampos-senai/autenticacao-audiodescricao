@@ -25,7 +25,7 @@ async function start(){
   await client.connect();
 }
 
-var generateToken = async (request,response)=>{
+var generateToken =  async (request,response)=>{
  
   var token = gen(6);
 
@@ -36,12 +36,10 @@ var generateToken = async (request,response)=>{
   enviarEmails = db.forEach(x => {
       if(x.status){
       xablito.sendMail(x.email, 'Recuperação de senha', '-', `Seu Token é ${token}`, 'gabriel_campos@esturdante.sc.senai.br', 'RECUPERAÇÃO AUDIODESCRIÇÃO');
-    }    
+      }    
     });
 
-    console.log("cabou o envio")
-    
-    response.status(200).json;
+    response.status(200).json();
 }
 
 
