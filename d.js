@@ -1,5 +1,8 @@
-const CyclicDB = require('cyclic-dynamodb')
-const db = CyclicDB() 
+const db = require('cyclic-dynamodb')
+
+
+process.env.CYCLIC_DB = process.env.CYCLIC_DB || 'db-sdkCyclicDB'
+process.env.AWS_REGION = process.env.AWS_REGION || 'us-east-1'
 
 baseItem = async function (){
     
