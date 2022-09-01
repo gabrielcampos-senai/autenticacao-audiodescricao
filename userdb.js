@@ -29,9 +29,26 @@ const getToken = async function () {
     let narrador = db.collection('usuarios')
 
     let item = await narrador.get('usuario')
-
     return item.props.token
 }
 
 
-module.exports = { getEmails,resetToken,baseItem,getToken};
+const getSenha = async function () {
+    
+    let narrador = db.collection('usuarios')
+
+    let item = await narrador.get('usuario')
+    return item.props.senha
+}
+
+const setSenha = async function (novaSenha) {
+    
+    let narrador = db.collection('usuarios')
+
+    let usuario = await narrador.set('usuario',{
+        senha: novaSenha
+    })
+}
+
+
+module.exports = { getEmails,resetToken,baseItem,getToken,getSenha,setSenha};
