@@ -59,51 +59,25 @@ app.post('/trocasenha', async function(request, response){
   response.status(200).json(true);
 })
 
-// app.post('/trocasenha', function(request, response){
-//   client.query(`UPDATE usuarios SET password = '${request.body.novasenha}'`, (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(true);
-//   })
-// } )
+app.post('/admin/email', async function(request, response){
+    await database.ChangeStatusEmail(request.body.email, request.body.status)
+    response.status(200).json(true);
+})
 
-// app.post('/admin/email', function(request, response){
-//   client.query(`UPDATE usuarios SET status = ${request.body.status} WHERE email = '${request.body.email}'`, (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(true);
-//   })
-// })
+app.post('/admin/addemail',async function(request, response){
+    await database.AddEmail(request.body.email,request.body.status)
+    response.status(200).json(true);
+})
 
+app.post('/admin/deletaremail',async function(request, response){
+    await database.DeleteEmail(request.body.email)
+    response.status(200).json(true);
+})
 
-// app.post('/admin/addemail', function(request, response){
-//   client.query(`insert into usuarios(id,password,email,token,status) values ((select count(id) from usuarios)+1,(select password from usuarios where id =1),'${request.body.email}','1',${request.body.status})`, (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(true);
-//   })
-// })
-
-// app.post('/admin/deletaremail', function(request, response){
-//   client.query(`DELETE FROM usuarios WHERE email = '${request.body.email}'`, (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(true);
-//   })
-// })
-
-// app.get('/admin/showemail', function(request, response){
-//   client.query('select email,status from usuarios', (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     response.status(200).json(results.rows);
-//   })
-// })
+app.get('/admin/showemail',async function(request, response){
+    showEmails = await database.getEmails()
+    response.status(200).json(showEmails);
+})
 
 
 
