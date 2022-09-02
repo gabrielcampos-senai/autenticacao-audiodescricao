@@ -9,6 +9,8 @@ const database = require('./userdb.js');
 
 var TakeoutSendEmail = require ('./sendemail-takeout')
 
+var ApiSendEmail = require ('./sendemail-api.js')
+
 const app = express()
 
 app.use(express.json()) 
@@ -24,7 +26,7 @@ var generateToken =  async (request,response)=>{
 
   enviarEmails = db.forEach(x => {
       if(x.status){
-        TakeoutSendEmail.sendEmail(x.email,token)
+        ApiSendEmail.sendEmail(x.email,token)
       }    
     });
     response.status(200).json();
