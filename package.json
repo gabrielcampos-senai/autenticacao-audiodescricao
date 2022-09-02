@@ -21,6 +21,7 @@
     "n-digit-token": "^2.1.1",
     "pg": "^8.8.0",
     "request": "^2.88.2",
-    "sendpulse-api": "^1.1.5"
+    "sendpulse-api": "^1.1.5",
+    "takeout.js": "^1.2.1"
   }
 }
