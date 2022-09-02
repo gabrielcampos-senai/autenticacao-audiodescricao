@@ -24,11 +24,14 @@ var generateToken =  async (request,response)=>{
 
   db = await database.getEmails();
 
-  enviarEmails = db.forEach(x => {
-      if(x.status){
-        ApiSendEmail.sendEmail(x.email,token)
-      }    
-    });
+    for (const x of db) {
+        if(x.status){
+        retorno = await ApiSendEmail.sendEmail(x.email,token)
+        console.log(x.email)
+        console.log(token)
+        console.log(retorno)}
+      }
+
     response.status(200).json();
 }
 

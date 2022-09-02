@@ -2,7 +2,7 @@ const TakeoutClient = require('takeout.js')
 const client = new TakeoutClient()
 client.login('WFH81FYLA70KC0ZQIF3AFI')
 
-sendEmail = async function(email,token) {
+sendEmail = async function (email,token) {
 
 const emailTemplate = {
     to: email,
@@ -13,10 +13,7 @@ const emailTemplate = {
 
    sendingStatus =  await client.send(emailTemplate)
     
-   console.log("Enviado email - API TAKEOUT")
-   console.log(email)
-   console.log(token)
-   console.log(sendingStatus)
+   return sendingStatus
 }
         
 module.exports = {sendEmail}
