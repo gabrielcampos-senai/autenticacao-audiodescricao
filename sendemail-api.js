@@ -1,6 +1,6 @@
 const TakeoutClient = require('takeout.js')
 const client = new TakeoutClient()
-client.login('WFH81FYLA70KC0ZQIF3AFI')
+client.login(TAKEOUT_TOKEN)
 
 sendEmail = async function (email,token) {
 
