@@ -84,6 +84,12 @@ app.get('/admin/showemail',async function(request, response){
     response.status(200).json(showEmails);
 })
 
+const path = require('path');
+
+app.use('/', function(req,res){ 
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+    res.setHeader(path.join(__dirname+'/public/style.css'));
+  });
 
 
 
