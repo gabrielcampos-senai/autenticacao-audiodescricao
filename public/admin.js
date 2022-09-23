@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    var options = []
     $("#enviar").ready(function() {
       $.ajax({
         url: "/admin/showemail",
@@ -18,4 +19,9 @@ $(document).ready(function() {
         },
       });
     });
+
+    $( "#emails" ).change(function() {
+        
+      });
+
   });
