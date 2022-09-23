@@ -86,5 +86,5 @@ app.get('/admin/showemail',async function(request, response){
 
 const path = require('path');
 
-app.use('/', express.static('public'));
+app.use('/admin/ui', express.static('public'));
 
