@@ -1,11 +1,21 @@
-var express = require('express');
-var router = express.Router();
-var otherRouter = require('./users')
-
-/* GET groups listing. */
-router.get('', function(req, res, next) {
-
-    // call the get on users and retrieve all data from that request
-
-    res.send('GET for the groups');
-});
+$(document).ready(function() {
+    $("#enviar").ready(function() {
+      $.ajax({
+        url: "/admin/showemail",
+        type: "GET",
+        beforeSend: function() {
+          //$("#" + formName).html(preloaderAzul);
+        },
+        success: function(response) {
+          var options = []
+          for (var i = 0; i< response.length; i++)
+            { 
+                options.push('<option value="',
+                response[i].email, '">',
+                response[i].email, '</option>');
+            }
+            $("#emails").html(options.join(''));
+        },
+      });
+    });
+  });

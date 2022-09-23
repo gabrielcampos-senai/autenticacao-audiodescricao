@@ -2,28 +2,11 @@
 <html>
   <head>
     <title>teste</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="admin.js"></script>
   </head>
   <body>
-    <h1>teste</h1>
-    <p>Welcome to teste</p>
-    <button id="enviar">Enviar</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("#enviar").click(function() {
-
-          $.ajax({
-            url: "/admin/showemail",
-            type: "GET",
-            beforeSend: function() {
-              //$("#" + formName).html(preloaderAzul);
-            },
-            success: function(response) {
-             console.log(response)
-            },
-          });
-        });
-      });
-    </script>
+    <select id="emails"></select>
+    <select id="status"></select>
   </body>
 </html>
