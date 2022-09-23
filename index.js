@@ -86,15 +86,5 @@ app.get('/admin/showemail',async function(request, response){
 
 const path = require('path');
 
-app.use('/', function(req,res){ 
-    res.sendFile(path.join(__dirname+'/public/index.html'));
-    res.setHeader(path.join(__dirname+'/public/style.css'));
-  });
-
-
-
-
-
-
-
+app.use('/', express.static('public'));
 
