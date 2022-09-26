@@ -4,12 +4,27 @@
     <title>Administrador</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="admin.js"></script>
+    <link rel="stylesheet" href="index.css">
   </head>
   <body>
+    <div class = "container">
+    <div class>
     <select id="emails" onchange="ADMIN.GetStatus()"></select>
     <select id="status"  >
       <option value="true">Ativo</option>
       <option value="false">Inativo</option>
     </select>
     <button type="button" id="enviar" onclick="ADMIN.SetStatus()">Alterar</button>
+    <button type="button" id="deletar" onclick="ADMIN.RemoveEmail()">Remover</button>
+  </div>
+  <div>
+    <input type="text" id="novoemail">
+    <select id="novostatus">
+      <option value="" disabled selected hidden>STATUS</option>
+      <option value="true">Ativo</option>
+      <option value="false">Inativo</option>
+    </select>
+    <button type="button" id="enviar" onclick="ADMIN.AddEmail()">Adicionar</button>
+  </div>
+</div>
 </html>

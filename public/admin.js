@@ -2,32 +2,27 @@ ADMIN = new Object();
 
 $(document).ready(function () {
 
-
   function RequestShowEmail() {
-    $("#enviar").ready(function () {
-      $.ajax({
-        url: "/admin/showemail",
-        type: "GET",
-        success: function (response) {
-          GetEmails(response)
-        },
-      });
+    $.ajax({
+      url: "/admin/showemail",
+      type: "GET",
+    }).done(function (resp) {
+      GetEmails(resp)
+      console.log(resp)
     });
   }
 
   RequestShowEmail()
 
   function GetEmails(emails) {
+    $("#emails").empty()
     var options = []
     for (var i = 0; i < emails.length; i++) {
-      options.push('<option value="',
-        emails[i].status, '">',
-        emails[i].email, '</option>');
+      $('#emails').append($('<option>').val(emails[i].status).text(emails[i].email))
     }
-    $("#emails").html(options.join(''));
+
     ADMIN.GetStatus()
   }
-
 
   ADMIN.GetStatus = function () {
     $("#status").val($('#emails').val())
@@ -43,14 +38,54 @@ $(document).ready(function () {
       statusValue = false
     }
 
-    var x = { email: emailValue, status: statusValue }
+    var body = { email: emailValue, status: statusValue }
     $.ajax({
       url: "/admin/email",
       type: "POST",
       contentType: 'application/json',
-      data: JSON.stringify(x),
+      data: JSON.stringify(body),
     });
     RequestShowEmail()
+  }
+
+  ADMIN.AddEmail = function () {
+    var newEmail = $("#novoemail").val()
+    var newStatus = $("#novostatus").val()
+
+    if (newStatus === 'true') {
+      newStatus = true
+    } else {
+      newStatus = false
+    }
+
+    body = { email: newEmail, status: newStatus }
+    $.ajax({
+      url: "/admin/addemail",
+      type: "POST",
+      contentType: 'application/json',
+      data: JSON.stringify(body),
+    }).done(function (resp) {
+      RequestShowEmail()
+      $("#novoemail").val('')
+      console.log(resp)
+    });
+  }
+
+  ADMIN.RemoveEmail = function () {
+    var emailValue = $("#emails option:selected").text()
+    if (confirm(`Deseja mesmo deletar o email ${emailValue} ?`)) {
+      body = { email: emailValue }
+      $.ajax({
+        url: "/admin/deletaremail",
+        type: "POST",
+        contentType: 'application/json',
+        data: JSON.stringify(body),
+      }).done(function (resp) {
+        RequestShowEmail()
+        $("#novoemail").val('')
+        console.log(resp)
+      });
+    }
   }
 });
 
