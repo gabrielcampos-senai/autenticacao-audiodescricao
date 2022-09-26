@@ -1,5 +1,10 @@
-const db = require('cyclic-dynamodb')
-
+var db;
+if (process.env.ENVIRONMENT != 'dev'){ db = require('cyclic-dynamodb')}
+else
+{
+     CyclicDb = require("cyclic-dynamodb")
+     db = CyclicDb("dead-puce-puppy-robeCyclicDB")
+}
 baseItem = async function (){
     
     let narrador = db.collection('usuarios')
