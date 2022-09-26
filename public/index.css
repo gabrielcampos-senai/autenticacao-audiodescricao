@@ -12,6 +12,19 @@
     transform: translate(-50%, -50%);
 }
 
+body{
+    background-color: rgba(34, 30, 30, 0.897);
+}
+
+input{
+  width: 54.5%;
+}
+
+h1{
+    margin-top: 15%;
+    text-align: center;
+}
+
 div {
     margin-top: 20px;
     display: block;
