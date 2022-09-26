@@ -65,6 +65,8 @@ app.post('/trocasenha', async function(request, response){
 })
 
 app.post('/admin/email', async function(request, response){
+    console.log("request")
+    console.log(request.body)
     await database.ChangeStatusEmail(request.body.email, request.body.status)
     response.status(200).json(true);
 })
