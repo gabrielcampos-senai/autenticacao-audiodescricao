@@ -44,8 +44,10 @@ $(document).ready(function () {
       type: "POST",
       contentType: 'application/json',
       data: JSON.stringify(body),
+    }).done(function (resp) {
+      RequestShowEmail()
+      alert("Alterado com sucesso !")
     });
-    RequestShowEmail()
   }
 
   ADMIN.AddEmail = function () {
@@ -67,7 +69,7 @@ $(document).ready(function () {
     }).done(function (resp) {
       RequestShowEmail()
       $("#novoemail").val('')
-      console.log(resp)
+      alert("Adicionado com sucesso !");
     });
   }
 
